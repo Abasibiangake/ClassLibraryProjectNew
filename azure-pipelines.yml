@@ -47,4 +47,5 @@ steps:
     command: 'push'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'devOps-lab4-artifacts'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)\$(artifactName).$(Build.BuildNumber).nupkg'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
