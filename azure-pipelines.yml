@@ -3,49 +3,59 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
+# Azure Pipelines YAML file
+
 trigger:
-- main
+  - main
 
 pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  feedName: 'devopsnugetfeed'
+  packageName: 'StringLibrary'
+  Major: '1'
+  Minor: '0'
+  Patch: '0'
 
 steps:
-- task: NuGetToolInstaller@1
+  - task: DotNetCoreCLI@2
+    displayName: Restore
+    inputs:
+      command: 'restore'
+      projects: '**/*.csproj'
+      feedsToUse: 'select'
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+  - task: DotNetCoreCLI@2
+    displayName: Build
+    inputs:
+      command: 'build'
+      projects: '**/*.csproj'
+      arguments: '--configuration $(buildConfiguration)'
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+  - task: DotNetCoreCLI@2
+    inputs:
+     command: pack
+     versioningScheme: byPrereleaseNumber
+     majorVersion: '$(Major)'
+     minorVersion: '$(Minor)'
+     patchVersion: '$(Patch)'
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*.csproj'
-    versioningScheme: 'byPrereleaseNumber'
-    includeSymbols: true
-    includeSource: true
-    configuration: '$(buildConfiguration)'
-- task: NuGetAuthenticate@0
-- task: NuGetCommand@2
-  inputs:
-    command: 'push'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: 'devOps-lab4-artifacts'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)\$(artifactName).$(Build.BuildNumber).nupkg'
-#     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
+  - task: NuGetAuthenticate@0
+    displayName: 'NuGet Authenticate'
+  - task: NuGetCommand@2
+    displayName: 'NuGet push'
+    inputs:
+      command: push
+      publishVstsFeed: 'StringLibrary/devopsnugetfeed'
+      allowPackageConflicts: true
+
+  - task: NuGetCommand@2
+    displayName: 'Push NuGet package'
+    inputs:
+      command: 'push'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/$(packageName).$(buildConfiguration).nupkg'
+      nuGetFeedType: 'internal'
+      publishVstsFeed: 'devopsnugetfeed'
+      allowPackageConflicts: true
