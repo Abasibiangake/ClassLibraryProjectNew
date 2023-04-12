@@ -13,7 +13,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  feedName: 'devopnugetfeed'
+  feedName: 'devopnugetfeed1'
   packageName: 'StringLibrary'
   Major: '1'
   Minor: '0'
@@ -41,4 +41,23 @@ steps:
      majorVersion: '$(Major)'
      minorVersion: '$(Minor)'
      patchVersion: '$(Patch)'
+
+  - task: NuGetAuthenticate@0
+    displayName: 'NuGet Authenticate'
+  - task: NuGetCommand@2
+    displayName: 'NuGet push'
+    inputs:
+      command: push
+      publishVstsFeed: 'StringLibrary/devopnugetfeed1'
+      allowPackageConflicts: true
+
+  - task: NuGetCommand@2
+    displayName: 'Push NuGet package'
+    inputs:
+      command: 'push'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/$(packageName).$(buildConfiguration).nupkg'
+      nuGetFeedType: 'internal'
+      publishVstsFeed: 'devopnugetfeed1'
+      allowPackageConflicts: true
+
 
