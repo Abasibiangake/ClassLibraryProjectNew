@@ -12,7 +12,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  feedName: 'devopsnugetfeed'
+  feedName: 'devopnugetfeed'
   packageName: 'SpringLibrary'
   Major: '1'
   Minor: '0'
@@ -47,7 +47,7 @@ steps:
     displayName: 'NuGet push'
     inputs:
       command: push
-      publishVstsFeed: 'SpringLibrary/devopsnugetfeed'
+      publishVstsFeed: 'SpringLibrary/devopnugetfeed'
       allowPackageConflicts: true
 
   - task: NuGetCommand@2
@@ -56,5 +56,5 @@ steps:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/$(packageName).$(buildConfiguration).nupkg'
       nuGetFeedType: 'internal'
-      publishVstsFeed: 'devopsnugetfeed'
+      publishVstsFeed: 'devopnugetfeed'
       allowPackageConflicts: true
