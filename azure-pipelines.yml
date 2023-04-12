@@ -14,7 +14,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   feedName: 'devopsnugetfeed'
-  packageName: 'StringLibrary'
+  packageName: 'SpringLibrary'
   Major: '1'
   Minor: '0'
   Patch: '0'
@@ -48,7 +48,7 @@ steps:
     displayName: 'NuGet push'
     inputs:
       command: push
-      publishVstsFeed: 'StringLibrary/devopsnugetfeed'
+      publishVstsFeed: 'SpringLibrary/devopsnugetfeed'
       allowPackageConflicts: true
 
   - task: NuGetCommand@2
