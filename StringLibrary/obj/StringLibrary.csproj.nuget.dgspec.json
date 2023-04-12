@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/kamsi/Documents/School2_new/6th semester/COMP367-DEVELOPS/new-final-devOp-lab4/ClassLibraryProjectNew/StringLibrary/StringLibrary.csproj": {}
+    "/Users/kamsi/Documents/School2_new/6th semester/COMP367-DEVELOPS/new-final-devOp-lab4/ClassLibraryProjects/fromgithub/ClassLibraryProjectNew/StringLibrary/StringLibrary.csproj": {}
   },
   "projects": {
-    "/Users/kamsi/Documents/School2_new/6th semester/COMP367-DEVELOPS/new-final-devOp-lab4/ClassLibraryProjectNew/StringLibrary/StringLibrary.csproj": {
+    "/Users/kamsi/Documents/School2_new/6th semester/COMP367-DEVELOPS/new-final-devOp-lab4/ClassLibraryProjects/fromgithub/ClassLibraryProjectNew/StringLibrary/StringLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/kamsi/Documents/School2_new/6th semester/COMP367-DEVELOPS/new-final-devOp-lab4/ClassLibraryProjectNew/StringLibrary/StringLibrary.csproj",
+        "projectUniqueName": "/Users/kamsi/Documents/School2_new/6th semester/COMP367-DEVELOPS/new-final-devOp-lab4/ClassLibraryProjects/fromgithub/ClassLibraryProjectNew/StringLibrary/StringLibrary.csproj",
         "projectName": "StringLibrary",
-        "projectPath": "/Users/kamsi/Documents/School2_new/6th semester/COMP367-DEVELOPS/new-final-devOp-lab4/ClassLibraryProjectNew/StringLibrary/StringLibrary.csproj",
+        "projectPath": "/Users/kamsi/Documents/School2_new/6th semester/COMP367-DEVELOPS/new-final-devOp-lab4/ClassLibraryProjects/fromgithub/ClassLibraryProjectNew/StringLibrary/StringLibrary.csproj",
         "packagesPath": "/Users/kamsi/.nuget/packages/",
-        "outputPath": "/Users/kamsi/Documents/School2_new/6th semester/COMP367-DEVELOPS/new-final-devOp-lab4/ClassLibraryProjectNew/StringLibrary/obj/",
+        "outputPath": "/Users/kamsi/Documents/School2_new/6th semester/COMP367-DEVELOPS/new-final-devOp-lab4/ClassLibraryProjects/fromgithub/ClassLibraryProjectNew/StringLibrary/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/kamsi/.nuget/NuGet/NuGet.Config"
