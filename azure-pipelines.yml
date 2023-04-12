@@ -42,20 +42,3 @@ steps:
      minorVersion: '$(Minor)'
      patchVersion: '$(Patch)'
 
-  - task: NuGetAuthenticate@0
-    displayName: 'NuGet Authenticate'
-  - task: NuGetCommand@2
-    displayName: 'NuGet push'
-    inputs:
-      command: push
-      publishVstsFeed: 'StringLibrary/devopnugetfeed'
-      allowPackageConflicts: true
-
-  - task: NuGetCommand@2
-    displayName: 'Push NuGet package'
-    inputs:
-      command: 'push'
-      packagesToPush: '$(Build.ArtifactStagingDirectory)/$(packageName).$(buildConfiguration).nupkg'
-      nuGetFeedType: 'internal'
-      publishVstsFeed: 'devopnugetfeed'
-      allowPackageConflicts: true
